@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: none;
+  font-family: "Roboto";
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to right, #fc00ff, #00dbde);
+}
+#app {
+  margin-top: 50px;
+  background-color: rgb(119, 181, 235);
+  border-radius: 5px;
+  overflow: hidden;
+  width: 440px;
+}
+.img-wrap img {
+  width: 440px;
+  height: 400px;
+}
+.description {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.description .songName {
+  font-size: 18px;
+  font-weight: bold;
+}
+.description .singer {
+  font-size: 18px;
+}
+.action {
+  display: flex;
+}
+.action .wrap-action-btn {
+  align-items: center;
+  margin-left: 120px;
+  padding: 20px;
+}
+
+.btn-wrap {
+  display: flex;
+  gap: 20px;
+  font-size: 25px;
+}
+
+.action .wrap-action-volume {
+  margin-right: 50px;
+}
+.pause,
+.play,
+.next-btn,
+.prev-btn {
+  background: #333;
+  color: aliceblue;
+  padding: 10px;
+  border-radius: 20px;
+}
+.pause:hover,
+.play:hover,
+.next-btn:hover,
+.prev-btn:hover {
+  cursor: pointer;
+  color: rgb(202, 50, 88);
+  transition: 0.25s;
+}
+.rewind-wrap {
+  align-items: center;
+  text-align: center;
+}
+.wrap-action-volume {
+  width: 50px;
+}
+#volume {
+  transform: rotate(90deg);
+}
+
+.display_none {
+  display: none;
+}
+.rewind-wrap {
+  margin-top: 20px;
+}
+.rewind-wrap input {
+  width: 200px;
+  transition: background-color 1s;
+}
+
+@keyframes color-transition {
+  0% {
+    background-color: #fc00ff;
+    transition: background-image 1s;
+  }
+  50% {
+    background-image: #556270;
+    transition: background-image 1s;
+  }
+  100% {
+    background-image: #f9d423;
+    transition: background-image 1s;
+  }
+}
+
+.changeColor {
+  animation: color-transition 4s infinite;
+}
