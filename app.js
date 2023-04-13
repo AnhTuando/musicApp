@@ -1,27 +1,39 @@
 songList = [
   {
+    id: 0,
     songName: "Perfect",
     singer: "Ed Sheeran",
     path: "./songs/Perfect.mp3",
     img: "./img/Ed Sheeran.jpg",
   },
   {
+    id: 1,
     songName: "Thats Hilarious",
     singer: "Charlie Puth",
     path: "./songs/Thats Hilarious.mp3",
     img: "./img/Charlie Puth.jpg",
   },
   {
+    id: 2,
+
     songName: "Thats Not How This Works",
     singer: "Charlie Puth",
     path: "./songs/Thats Not How This Works.mp3",
     img: "./img/Charlie Puth.jpg",
   },
   {
+    id: 3,
     songName: "When I Was Your Man",
     singer: "Bruno Mars",
     path: "./songs/When I Was Your Man.mp3",
     img: "./img/BrunoMars.jpg",
+  },
+  {
+    id: 4,
+    songName: "Until You",
+    singer: "Shayne Ward ",
+    path: "./songs/Until You.mp3",
+    img: "./img/Shayne Ward.jpg",
   },
 ];
 let $img = $("img");
@@ -41,6 +53,11 @@ function renderSong(index) {
   progress.value = 0;
 }
 renderSong(currentIndex);
+let shuffle = document.querySelector(".shuffle");
+shuffle.onclick = function () {
+  shuffle.classList.toggle("active");
+};
+
 // Play
 let playBtn = document.querySelector(".play");
 playBtn.addEventListener("click", function () {
@@ -58,11 +75,22 @@ pauseBtn.addEventListener("click", function () {
 // Next
 let nextBtn = document.querySelector(".next-btn");
 nextBtn.addEventListener("click", function () {
-  currentIndex += 1;
-  if (currentIndex > songList.length - 1) {
-    currentIndex = 0;
+  if (shuffle.classList.contains("active")) {
+    let lastRandom = null;
+    currentIndex = Math.floor(Math.random() * songList.length);
+    while (currentIndex == lastRandom) {
+      currentIndex = Math.floor(Math.random() * songList.length);
+    }
     renderSong(currentIndex);
+    $audio.get(0).play();
+  } else {
+    currentIndex += 1;
+    if (currentIndex > songList.length - 1) {
+      currentIndex = 0;
+      renderSong(currentIndex);
+    }
   }
+
   renderSong(currentIndex);
   $audio.get(0).play();
   playBtn.classList.add("display_none");
@@ -73,11 +101,22 @@ nextBtn.addEventListener("click", function () {
 let prevBtn = document.querySelector(".prev-btn");
 
 prevBtn.addEventListener("click", function () {
-  currentIndex -= 1;
-  if (currentIndex < 0) {
-    currentIndex = songList.length - 1;
+  if (shuffle.classList.contains("active")) {
+    let lastRandom = null;
+    currentIndex = Math.floor(Math.random() * songList.length);
+    while (currentIndex == lastRandom) {
+      currentIndex = Math.floor(Math.random() * songList.length);
+    }
     renderSong(currentIndex);
+    $audio.get(0).play();
+  } else {
+    currentIndex -= 1;
+    if (currentIndex < 0) {
+      currentIndex = songList.length - 1;
+      renderSong(currentIndex);
+    }
   }
+
   renderSong(currentIndex);
   $audio.get(0).play();
   playBtn.classList.add("display_none");
@@ -106,3 +145,33 @@ volume.onchange = function (e) {
   $audio.prop("volume", volumeDuration);
   console.log(volumeDuration);
 };
+// let shuffle = document.querySelector(".shuffle");
+// shuffle.onclick = function () {
+//   let lastRandom = null;
+//   shuffle.classList.toggle("active");
+//   currentIndex = Math.floor(Math.random() * songList.length);
+//   while (currentIndex == lastRandom) {
+//     currentIndex = Math.floor(Math.random() * songList.length);
+//   }
+//   if (shuffle.classList.contains("active")) {
+//     prevBtn.addEventListener("click", function () {
+//       renderSong(currentIndex);
+//       $audio.get(0).play();
+//     });
+//   }
+//   lastRandom = currentIndex;
+//   console.log(currentIndex);
+// };
+// let shuffle = document.querySelector(".shuffle");
+// shuffle.onclick = function () {
+//   shuffle.classList.toggle("active");
+// };
+// if (shuffle.classList.contains("active")) {
+//   let lastRandom = null;
+//   currentIndex = Math.floor(Math.random() * songList.length);
+//   while (currentIndex == lastRandom) {
+//     currentIndex = Math.floor(Math.random() * songList.length);
+//   }
+//   renderSong(currentIndex);
+//   $audio.get(0).play();
+// }
